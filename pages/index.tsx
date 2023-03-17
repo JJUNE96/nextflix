@@ -5,6 +5,10 @@ import requests from '@/utils/requests';
 import { Movie, TV } from '@/typings';
 import Banner from '@/components/Banner';
 import Row from '@/components/Row';
+import useAuth from '@/hooks/useAuth';
+import Modal from '@/components/Modal';
+import { modalState } from '@/atoms/globalAtom';
+import { useRecoilValue } from 'recoil';
 
 interface IndexProps {
 	original: TV[];
@@ -17,6 +21,9 @@ interface IndexProps {
 }
 
 const Home: NextPage<IndexProps> = ({ original, topRated, sf, drama, fantasy, thriller, animation }: IndexProps) => {
+	const showModal = useRecoilValue(modalState);
+	const { user } = useAuth();
+	console.log(user);
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-[#333] to-[#141414]'>
 			<Head>
@@ -26,7 +33,7 @@ const Home: NextPage<IndexProps> = ({ original, topRated, sf, drama, fantasy, th
 
 			<Header />
 
-			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
+			<main className='relative pl-4 pb-24 lg:space-y-18 lg:pl-16'>
 				<Banner original={original} />
 
 				<section>
@@ -34,10 +41,12 @@ const Home: NextPage<IndexProps> = ({ original, topRated, sf, drama, fantasy, th
 					<Row title='Science Fiction' movies={sf} />
 					<Row title='Drama' movies={drama} />
 					<Row title='Fantasy' movies={fantasy} />
-					<Row title='Thiller' movies={thriller} />
+					<Row title='Thriller' movies={thriller} />
 					<Row title='Animation' movies={animation} />
 				</section>
 			</main>
+
+			{showModal && <Modal />}
 		</div>
 	);
 };
