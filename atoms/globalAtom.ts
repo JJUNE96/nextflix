@@ -1,6 +1,7 @@
-import { Movie } from '@/typings';
 import { atom } from 'recoil';
-export const modalState = atom({
+import { Movie } from '@/typings';
+
+export const modalState = atom<boolean>({
 	key: 'modalState',
 	default: false,
 });
