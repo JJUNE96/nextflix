@@ -89,3 +89,5 @@ npm i tailwind-scrollbar-hide
 ### tmdb 이미지 사이즈 정보
 
 [tmdb 이미지 사이즈 코드 확인](https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400)
+
+배포주소 : https://next-clone.vercel.app/
